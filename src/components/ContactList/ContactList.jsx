@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import { selectContacts, selectFilter } from 'redux/selectors';
-import { deleteContact } from 'redux/operations';
+import { deleteContact } from 'redux/contacts/operations';
 
 import css from './ContactList.module.css';
 
@@ -15,14 +15,14 @@ export const ContactList = () => {
     dispatch(deleteContact(contactId));
   };
 
-  const createContactsMarkup = ({ id, name, phone }) => {
+  const createContactsMarkup = ({ id, name, number }) => {
     return (
       <li key={id} className={css.listItem}>
         <span className={css.itemText}>
           <b>{name}</b>
         </span>
         <span className={css.phoneNumber}>
-          <i>{phone}</i>
+          <i>{number}</i>
         </span>
         <button
           className={css.delBtn}

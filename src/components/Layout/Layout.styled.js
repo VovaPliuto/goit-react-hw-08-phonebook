@@ -18,13 +18,24 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Header = styled.header`
-  padding: 30px 40px;
+  padding: 30px 60px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
 
 const Nav = styled.nav`
   display: flex;
-  gap: 25px;
-`
+  justify-content: space-between;
+  align-items: center;
+`;
 
-export { StyledLink, Header, Nav };
+const NavWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 45px;
+`;
+
+const Container = styled.div`
+  margin: 30px;
+`;
+
+export { StyledLink, Header, Nav, NavWrapper, Container };

@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
 
 import { ContactForm } from 'components/ContactForm/ContactForm';
-import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
+import { Filter } from 'components/Filter/Filter';
 
-import css from "../components/App.module.css"
-import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
+import { fetchContacts } from 'redux/contacts/operations';
 import { selectError, selectIsLoading } from 'redux/selectors';
 
 const Contacts = () => {
@@ -20,7 +19,10 @@ const Contacts = () => {
   }, [dispatch]);
 
   return (
-    <div className={css.contactSection}>
+    <>
+      <Helmet>
+        <title>Contacts</title>
+      </Helmet>
       <h1>Phonebook</h1>
       <ContactForm />
       <h2>Contacts</h2>
@@ -28,7 +30,7 @@ const Contacts = () => {
       {isLoading && !error && <b>Request in progress...</b>}
       <ContactList />
       {isLoading && !error && <b>Request in progress...</b>}
-    </div>
+    </>
   );
 };
 
