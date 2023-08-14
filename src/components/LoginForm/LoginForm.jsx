@@ -25,11 +25,11 @@ export const LoginForm = () => {
     <Form onSubmit={handleSubmit}>
       <Label>
         Email
-        <input type="email" name="email" />
+        <input type="email" name="email" required/>
       </Label>
       <Label>
         Password
-        <input type="password" name="password" />
+        <input type="password" name="password" minLength='7' required/>
       </Label>
       <Button type="submit">Log In</Button>
     </Form>

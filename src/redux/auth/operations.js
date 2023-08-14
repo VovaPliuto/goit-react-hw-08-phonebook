@@ -19,7 +19,7 @@ export const userRegister = createAsyncThunk(
       setAuthToken(response.data.token);
       return response.data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -32,7 +32,9 @@ export const userLogIn = createAsyncThunk(
       setAuthToken(response.data.token);
       return response.data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      alert("Something went wrong ! Please check your login and password and try again !");
+      return thunkAPI.rejectWithValue(error.message);
+      
     }
   }
 );
@@ -45,7 +47,7 @@ export const userLogOut = createAsyncThunk(
       clearAuthToken();
       return response.data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -63,43 +65,7 @@ export const userRefresh = createAsyncThunk(
       const response = await axios.get('users/current');
       return response.data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
-// export const fetchContacts = createAsyncThunk(
-//   'contacts/fetchAll',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get('/contacts');
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// export const addContact = createAsyncThunk(
-//   'contacts/addContact',
-//   async (newContact, thunkAPI) => {
-//     try {
-//       const response = await axios.post('/contacts', { ...newContact });
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// export const deleteContact = createAsyncThunk(
-//   'contacts/deleteContact',
-//   async (contactId, thunkAPI) => {
-//     try {
-//       const response = await axios.delete(`/contacts/${contactId}`);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
