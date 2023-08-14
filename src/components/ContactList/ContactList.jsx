@@ -3,7 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts, selectFilter } from 'redux/selectors';
 import { deleteContact } from 'redux/contacts/operations';
 
-import css from './ContactList.module.css';
+import {
+  StyledContactsList,
+  ListItem,
+  Text,
+  Number,
+  DeleteBtn,
+} from './ContactList.styled';
+// import css from './ContactList.module.css';
 
 export const ContactList = () => {
   const data = useSelector(selectContacts);
@@ -17,27 +24,23 @@ export const ContactList = () => {
 
   const createContactsMarkup = ({ id, name, number }) => {
     return (
-      <li key={id} className={css.listItem}>
-        <span className={css.itemText}>
+      <ListItem key={id}>
+        <Text>
           <b>{name}</b>
+        </Text>
+        <span>
+          <Number>{number}</Number>
         </span>
-        <span className={css.phoneNumber}>
-          <i>{number}</i>
-        </span>
-        <button
-          className={css.delBtn}
-          type="button"
-          onClick={() => onContactDelete(id)}
-        >
+        <DeleteBtn type="button" onClick={() => onContactDelete(id)}>
           Delete
-        </button>
-      </li>
+        </DeleteBtn>
+      </ListItem>
     );
   };
 
   if (filter) {
     return (
-      <ul className={css.contactsList}>
+      <StyledContactsList>
         {data
           .filter(({ name }) =>
             name.toLowerCase().includes(filter.toLowerCase())
@@ -45,21 +48,15 @@ export const ContactList = () => {
           .map(el => {
             return createContactsMarkup(el);
           })}
-      </ul>
+      </StyledContactsList>
     );
   }
 
   return (
-    <ul className={css.contactsList}>
+    <StyledContactsList>
       {data.map(el => {
         return createContactsMarkup(el);
       })}
-    </ul>
+    </StyledContactsList>
   );
 };
-
-// ContactList.propTypes = {
-//   data: PropTypes.array.isRequired,
-//   filter: PropTypes.string.isRequired,
-//   onContactDelete: PropTypes.func.isRequired,
-// };

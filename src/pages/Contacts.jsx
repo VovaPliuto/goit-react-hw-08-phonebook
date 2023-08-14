@@ -29,7 +29,7 @@ const Contacts = () => {
       <Filter />
       {isLoading && !error && <b>Request in progress...</b>}
       <ContactList />
-      {isLoading && !error && <b>Request in progress...</b>}
+      {/* {isLoading && !error && <b>Request in progress...</b>} */}
     </>
   );
 };
